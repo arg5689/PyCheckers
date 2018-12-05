@@ -2,6 +2,7 @@ import GameBoard, sys
 
 class Main:
     def __init__(self):
+        print()
         self.game = GameBoard.GameBoard(self.startup())
         self.test()
 
