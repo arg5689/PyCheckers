@@ -16,7 +16,6 @@ class GameBoard:
         self.jump = False
 
 
-
     def drawBoard(self):
         counter = 0
         for itemx in self.nestedBoard:     #Y-Axis of board
@@ -80,6 +79,117 @@ class GameBoard:
                     list_of_moves.append([(location[0] - 2), (location[1] + 6)])
                     self.jump = True
 
+            # right most 'o' pieces of the board, non-jump
+            if (self.nestedBoard[(location[0] - 1)][(location[1] - 3)] == " ") and (location[1] == 25):
+                list_of_moves.append([(location[0] - 1), (location[1] - 3)])
+
+            # right most 'o' pieces of the board, jumping
+            elif (location[1] == 25) and (self.nestedBoard[(location[0]-1)][(location[1]-3)] == "X" or self.nestedBoard[(location[0]-1)][(location[1]-3)] == "K"):
+                    if self.nestedBoard[(location[0]-2)][(location[1]-6)] == " ":
+                        list_of_moves.append([(location[0] - 2), (location[1] - 6)])
+                        self.jump = True
+
+        if start_piece == "8":
+            #this is the left most pieces for the '8'
+            if location[1] == 4 and self.nestedBoard[(location[0]-1)][(location[1]+3)] == " ":
+                list_of_moves.append([(location[0]-1),(location[1]+3)])
+            elif location[1] == 4 and \
+                (self.nestedBoard[(location[0]-1)][(location[1]+3)] == "X" or self.nestedBoard[(location[0]-1)][(location[1]+3)] == "K")\
+                and self.nestedBoard[(location[0]-2)][(location[1]+6)] == " ":
+                list_of_moves.append([(location[0] - 2), (location[1] + 6)])
+                self.jump = True
+
+            # this is for the left non-jump middle of the board pieces '8'
+            elif (self.nestedBoard[(location[0] - 1)][(location[1] - 3)] == " ") and (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22):
+                list_of_moves.append([(location[0] - 1), (location[1] - 3)])
+
+            #jump-left '8'
+            elif (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22) \
+                    and \
+                    (self.nestedBoard[(location[0]-1)][(location[1]-3)] == "X" or self.nestedBoard[(location[0]-1)][(location[1]-3)] == "K"):
+                    if self.nestedBoard[(location[0]-2)][(location[1]-6)] == " ":
+                        list_of_moves.append([(location[0] - 2), (location[1] - 6)])
+                        self.jump = True
+
+            #this is for the right non-jump middle of the board pieces '8'
+            if (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22) \
+                    and (self.nestedBoard[(location[0]-1)][(location[1]+3)] == " "):
+                list_of_moves.append([(location[0] - 1), (location[1] + 3)])
+
+            # jump-right '8'
+            elif (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[
+                1] == 19 or location[1] == 22) \
+                 and \
+                 (self.nestedBoard[(location[0] - 1)][(location[1] + 3)] == "X" or
+                  self.nestedBoard[(location[0] - 1)][(location[1] + 3)] == "K"):
+                if self.nestedBoard[(location[0] - 2)][(location[1] + 6)] == " ":
+                    list_of_moves.append([(location[0] - 2), (location[1] + 6)])
+                    self.jump = True
+
+            # right most '8' pieces of the board, non-jump
+            if (self.nestedBoard[(location[0] - 1)][(location[1] - 3)] == " ") and (location[1] == 25):
+                list_of_moves.append([(location[0] - 1), (location[1] - 3)])
+
+            # right most '8' pieces of the board, jumping
+            elif (location[1] == 25) and (self.nestedBoard[(location[0]-1)][(location[1]-3)] == "X" or self.nestedBoard[(location[0]-1)][(location[1]-3)] == "K"):
+                    if self.nestedBoard[(location[0]-2)][(location[1]-6)] == " ":
+                        list_of_moves.append([(location[0] - 2), (location[1] - 6)])
+                        self.jump = True
+
+            # this is the left most pieces for the '8'
+            if location[1] == 4 and self.nestedBoard[(location[0] + 1)][(location[1] + 3)] == " ":
+                list_of_moves.append([(location[0] + 1), (location[1] + 3)])
+            elif location[1] == 4 and \
+                    (self.nestedBoard[(location[0] + 1)][(location[1] + 3)] == "X" or
+                     self.nestedBoard[(location[0] - 1)][(location[1] + 3)] == "K") \
+                    and self.nestedBoard[(location[0] + 2)][(location[1] + 6)] == " ":
+                list_of_moves.append([(location[0] + 2), (location[1] + 6)])
+                self.jump = True
+
+            # this is for the left non-jump middle of the board pieces '8'
+            elif (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == " ") and (
+                    location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or
+                    location[1] == 19 or location[1] == 22):
+                list_of_moves.append([(location[0] + 1), (location[1] - 3)])
+
+            # jump-left '8'
+            elif (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or
+                  location[1] == 19 or location[1] == 22) \
+                    and \
+                    (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == "X" or
+                     self.nestedBoard[(location[0] - 1)][(location[1] - 3)] == "K"):
+                if self.nestedBoard[(location[0] + 2)][(location[1] - 6)] == " ":
+                    list_of_moves.append([(location[0] + 2), (location[1] - 6)])
+                    self.jump = True
+
+            # this is for the right non-jump middle of the board pieces '8'
+            if (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[
+                1] == 19 or location[1] == 22) \
+                    and (self.nestedBoard[(location[0] + 1)][(location[1] + 3)] == " "):
+                list_of_moves.append([(location[0] + 1), (location[1] + 3)])
+
+            # jump-right '8'
+            elif (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or
+                  location[
+                      1] == 19 or location[1] == 22) \
+                    and \
+                    (self.nestedBoard[(location[0] + 1)][(location[1] + 3)] == "X" or
+                     self.nestedBoard[(location[0] + 1)][(location[1] + 3)] == "K"):
+                if self.nestedBoard[(location[0] + 2)][(location[1] + 6)] == " ":
+                    list_of_moves.append([(location[0] + 2), (location[1] + 6)])
+                    self.jump = True
+
+            # right most '8' pieces of the board, non-jump
+            if (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == " ") and (location[1] == 25):
+                list_of_moves.append([(location[0] + 1), (location[1] - 3)])
+
+            # right most '8' pieces of the board, jumping
+            elif (location[1] == 25) and (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == "X" or
+                                          self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == "K"):
+                if self.nestedBoard[(location[0] + 2)][(location[1] - 6)] == " ":
+                    list_of_moves.append([(location[0] + 2), (location[1] - 6)])
+                    self.jump = True
+
         if start_piece == "X":
             #this is the left most pieces for the 'X'
             if location[1] == 4 and self.nestedBoard[(location[0]+1)][(location[1]+3)] == " ":
@@ -116,6 +226,110 @@ class GameBoard:
                 if self.nestedBoard[(location[0] + 2)][(location[1] + 6)] == " ":
                     list_of_moves.append([(location[0] + 2), (location[1] + 6)])
                     self.jump = True
+
+            # right most 'X' pieces of the board, non-jump
+            if (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == " ") and (location[1] == 25):
+                list_of_moves.append([(location[0] + 1), (location[1] - 3)])
+
+            # right most 'X' pieces of the board, jumping
+            elif (location[1] == 25) and (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == "o" or
+                                          self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == "8"):
+                if self.nestedBoard[(location[0] + 2)][(location[1] - 6)] == " ":
+                    list_of_moves.append([(location[0] + 2), (location[1] - 6)])
+                    self.jump = True
+
+        if start_piece == "K":
+            #this is the left most pieces for the 'K'
+            if location[1] == 4 and self.nestedBoard[(location[0]+1)][(location[1]+3)] == " ":
+                list_of_moves.append([(location[0]+1),(location[1]+3)])
+            elif location[1] == 4 and \
+                (self.nestedBoard[(location[0]+1)][(location[1]+3)] == "o" or self.nestedBoard[(location[0]-1)][(location[1]+3)] == "8")\
+                and self.nestedBoard[(location[0]+2)][(location[1]+6)] == " ":
+                list_of_moves.append([(location[0] + 2), (location[1] + 6)])
+                self.jump = True
+
+            # this is for the left non-jump middle of the board pieces 'K'
+            elif (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == " ") and (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22):
+                list_of_moves.append([(location[0] + 1), (location[1] - 3)])
+
+            #jump-left 'K'
+            elif (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22) \
+                    and \
+                    (self.nestedBoard[(location[0]+1)][(location[1]-3)] == "o" or self.nestedBoard[(location[0]-1)][(location[1]-3)] == "8"):
+                    if self.nestedBoard[(location[0]+2)][(location[1]-6)] == " ":
+                        list_of_moves.append([(location[0] + 2), (location[1] - 6)])
+                        self.jump = True
+
+            #this is for the right non-jump middle of the board pieces 'K'
+            if (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22) \
+                    and (self.nestedBoard[(location[0]+1)][(location[1]+3)] == " "):
+                list_of_moves.append([(location[0] + 1), (location[1] + 3)])
+
+            # jump-right 'K'
+            elif (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[
+                1] == 19 or location[1] == 22) \
+                 and \
+                 (self.nestedBoard[(location[0] + 1)][(location[1] + 3)] == "o" or
+                  self.nestedBoard[(location[0] + 1)][(location[1] + 3)] == "8"):
+                if self.nestedBoard[(location[0] + 2)][(location[1] + 6)] == " ":
+                    list_of_moves.append([(location[0] + 2), (location[1] + 6)])
+                    self.jump = True
+
+            # right most 'K' pieces of the board, non-jump
+            if (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == " ") and (location[1] == 25):
+                list_of_moves.append([(location[0] + 1), (location[1] - 3)])
+
+            # right most 'K' pieces of the board, jumping
+            elif (location[1] == 25) and (self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == "o" or
+                                          self.nestedBoard[(location[0] + 1)][(location[1] - 3)] == "8"):
+                if self.nestedBoard[(location[0] + 2)][(location[1] - 6)] == " ":
+                    list_of_moves.append([(location[0] + 2), (location[1] - 6)])
+                    self.jump = True
+
+            if location[1] == 4 and self.nestedBoard[(location[0]-1)][(location[1]+3)] == " ":
+                list_of_moves.append([(location[0]-1),(location[1]+3)])
+            elif location[1] == 4 and \
+                (self.nestedBoard[(location[0]-1)][(location[1]+3)] == "o" or self.nestedBoard[(location[0]-1)][(location[1]+3)] == "8")\
+                and self.nestedBoard[(location[0]-2)][(location[1]+6)] == " ":
+                list_of_moves.append([(location[0] - 2), (location[1] + 6)])
+                self.jump = True
+
+            # this is for the left non-jump middle of the board pieces 'K'
+            elif (self.nestedBoard[(location[0] - 1)][(location[1] - 3)] == " ") and (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22):
+                list_of_moves.append([(location[0] - 1), (location[1] - 3)])
+
+            #jump-left 'K'
+            elif (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22) \
+                    and \
+                    (self.nestedBoard[(location[0]-1)][(location[1]-3)] == "o" or self.nestedBoard[(location[0]-1)][(location[1]-3)] == "8"):
+                    if self.nestedBoard[(location[0]-2)][(location[1]-6)] == " ":
+                        list_of_moves.append([(location[0] - 2), (location[1] - 6)])
+                        self.jump = True
+
+            #this is for the right non-jump middle of the board pieces 'K'
+            if (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[1] == 19 or location[1] == 22) \
+                    and (self.nestedBoard[(location[0]-1)][(location[1]+3)] == " "):
+                list_of_moves.append([(location[0] - 1), (location[1] + 3)])
+
+            # jump-right 'K'
+            elif (location[1] == 7 or location[1] == 10 or location[1] == 13 or location[1] == 16 or location[
+                1] == 19 or location[1] == 22) \
+                 and \
+                 (self.nestedBoard[(location[0] - 1)][(location[1] + 3)] == "o" or
+                  self.nestedBoard[(location[0] - 1)][(location[1] + 3)] == "8"):
+                if self.nestedBoard[(location[0] - 2)][(location[1] + 6)] == " ":
+                    list_of_moves.append([(location[0] - 2), (location[1] + 6)])
+                    self.jump = True
+
+            # right most 'K' pieces of the board, non-jump
+            if (self.nestedBoard[(location[0] - 1)][(location[1] - 3)] == " ") and (location[1] == 25):
+                list_of_moves.append([(location[0] - 1), (location[1] - 3)])
+
+            # right most 'K' pieces of the board, jumping
+            elif (location[1] == 25) and (self.nestedBoard[(location[0]-1)][(location[1]-3)] == "o" or self.nestedBoard[(location[0]-1)][(location[1]-3)] == "8"):
+                    if self.nestedBoard[(location[0]-2)][(location[1]-6)] == " ":
+                        list_of_moves.append([(location[0] - 2), (location[1] - 6)])
+                        self.jump = True
 
         if list_of_moves == []:
             print("You chose a piece with no possible moves.")
@@ -235,30 +449,10 @@ class GameBoard:
             #input()
             self.piecesLeftRed-=2
 
-
             if turn:
                 turn = False
             else:
                 turn = True
-
-
-
-    # def updatePosition(self, piecex, piecey, newLocx, newLocy):
-    #     temp = self.nestedBoard[piecex][piecey]
-    #     self.nestedBoard[piecex][piecey] = " "
-    #     self.nestedBoard[newLocx][newLocy] = temp
-    #
-    #     # if self.nestedBoard[newLocx][newLocy] == " ":
-    #     #     self.nestedBoard[newLocx][newLocy] = temp
-    #     return
-    #
-    # def deletePiece(self,piecex, piecey):
-    #     self.nestedBoard[piecex][piecey] = " "
-    #     return
-    #
-    # def availableMoves(self,piecex, piecey):
-    #
-    #     return
 
 
     def locations(self):

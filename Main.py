@@ -2,7 +2,6 @@ import GameBoard, sys
 
 class Main:
     def __init__(self):
-        print()
         self.game = GameBoard.GameBoard(self.startup())
         self.test()
 
@@ -23,6 +22,8 @@ class Main:
             if input1 == "2":
                 return "Board" + input1
             elif input1 == "":
+                return "Board" + input1
+            elif input1 == "3":
                 return "Board" + input1
 
 
